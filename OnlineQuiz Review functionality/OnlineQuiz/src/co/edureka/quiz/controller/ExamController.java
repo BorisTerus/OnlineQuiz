@@ -65,15 +65,9 @@ public class ExamController extends HttpServlet {
 			
 			int minute=-1;
 			int second=-1;
-			if(request.getParameter("minute")!=null)
-			{			
-			minute=Integer.parseInt(request.getParameter("minute"));
-			second=Integer.parseInt(request.getParameter("second"));
-			request.getSession().setAttribute("min",request.getParameter("minute") );
-			request.getSession().setAttribute("sec",request.getParameter("second") );
-			}
 			
 			String radio=request.getParameter("answer");
+			System.out.println(radio);
 			int selectedRadio=-1;
 			exam.selections.put(exam.currentQuestion, selectedRadio);
 			if("1".equals(radio))
@@ -116,7 +110,7 @@ public class ExamController extends HttpServlet {
 				session.setAttribute("quest",q);
 				
 			}
-			else if("Finish Exam".equals(action)||( minute==0 && second==0))
+			else if("Save and Finish Exam".equals(action)||( minute==0 && second==0))
 			{   finish=true;			    
 				int result=exam.calculateResult(exam,exam.questionList.size());					
 				request.setAttribute("result",result);				
